@@ -1,0 +1,30 @@
+/* components.css - header/banner rules */
+
+.site-header{
+    background-image: url("../images/banner/koi-pond.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    height: 200px;
+    width: auto;
+    margin-bottom:50px;
+}
+.header-content{
+    position:relative;
+    height:200px;
+}
+.site-logo{
+    position: relative;
+    height:100px;
+    left:2%;
+    top:45px;
+}
+.site-title{
+    position:absolute;
+    left: 35%;
+    top: 10%;
+    font-size:100px;
+    padding:0px;
+    margin:0px;
+}

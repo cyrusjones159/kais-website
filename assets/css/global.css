@@ -1,0 +1,36 @@
+/* assets/css/global.css
+   Global site defaults and utilities used across pages.
+   Place after variables.css so it can use CSS custom properties.
+*/
+
+html { box-sizing: border-box; font-size: 16px; }
+*, *::before, *::after { box-sizing: inherit; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg, #faf9f7);
+  color: var(--text, #111111);
+  line-height: 1.4;
+}
+
+/* Responsive container used by pages */
+.container {
+  width: min(92%, var(--container-max, 1100px));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Media defaults */
+img, picture, video { max-width: 100%; height: auto; display: block; }
+
+/* Links and accessible focus */
+a { color: var(--accent, #b84b4b); text-decoration: none; }
+a:hover, a:focus { text-decoration: underline; }
+:focus { outline: 3px solid color-mix(in srgb, var(--accent, #b84b4b) 20%, white); outline-offset: 3px; }
+
+/* Small utilities */
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; white-space: nowrap; border: 0; }
+
+/* Simple helper to center elements */
+.center { margin-left: auto; margin-right: auto; }

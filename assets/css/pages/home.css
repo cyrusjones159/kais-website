@@ -1,0 +1,280 @@
+/* assets/css/pages/home.css
+   Home page layout + look
+   Assumes variables are defined in variables.css (colors, type scale).
+   If you don't have them, fallback values below will apply.
+*/
+
+/* --- Fallback variables (will be overridden by variables.css if present) --- */
+:root{
+  --bg: #faf9f7;
+  --text: #111111;
+  --muted: #666666;
+  --accent: #b84b4b;
+  --tile-overlay: rgba(0,0,0,0.35);
+  --tile-overlay-strong: rgba(0,0,0,0.45);
+  --radius: 12px;
+  --gap-lg: 2.25rem;
+  --gap-md: 1.25rem;
+  --container-max: 1100px;
+  --hero-max-height: 65vh; /* calm, not full screen */
+  --hero-min-height: 360px;
+  --primary-row-height: 260px;
+  --secondary-row-height: 160px;
+  --social-row-height: 72px;
+  --transition: 260ms cubic-bezier(.2,.9,.2,1);
+}
+
+/* --- Page wrapper spacing (keeps hero + hub visually separated) --- */
+main {
+  background: var(--color-bg);
+  color: var(--text);
+}
+
+/* Constrain content width and center layout */
+.container {
+  width: min(92%, var(--container-max));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- HERO SECTION ---------- */
+/* #hero should contain the featured artwork */
+ .hero-img {
+  width: 95%;
+  max-height: calc(var(--hero-max-height) + 40px);
+  height: auto;
+  display: block;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: var(--gap-md);
+ }
+
+/* ---------- HUB NAVIGATION (tiles) ---------- */
+#hub-navigation {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: calc(var(--gap-lg) + 0.5rem) 0 4rem;
+  display: grid;
+  gap: var(--gap-lg);
+  align-items: start;
+}
+
+/* Row wrapper helps with responsive stacking */
+.primary-row,
+.secondary-row {
+  display: flex;
+  gap: var(--gap-md);
+}
+
+/* Base tile style (all tiles are anchors) */
+.nav-tile {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #000;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 5px solid #000;
+  border-radius: var(--radius);
+  background-color: #222; /* fallback if image missing */
+  background-size: cover;
+  background-position: center center;
+  min-width: 0; /* fix flex overflow */
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+/* overlay for consistent contrast */
+.nav-tile::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--tile-overlay);
+  border-radius: inherit;
+  transition: background var(--transition);
+  pointer-events: none;
+}
+
+/* label container inside tile */
+.nav-tile .label {
+  position: relative; /* above overlay */
+  z-index: 2;
+  text-align: center;
+  padding: 0.8rem 1.2rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.01em;
+}
+
+/* subtle hover/active */
+.nav-tile:hover,
+.nav-tile:focus {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 34px rgba(16,18,20,0.09);
+}
+.nav-tile:hover::before,
+.nav-tile:focus::before {
+  background: var(--tile-overlay-strong);
+}
+
+/* --- Primary row tiles (large) --- */
+.primary-row .nav-tile {
+  flex: 1 1 0;
+  height: 260px;
+}
+.primary-row .nav-tile.portfolio{
+  background-image:url("../../images/portfolio_imgs/portfolio_images/Lilith_Power.PNG");
+  background-size: cover;
+  background-position: center 35%;
+  background-repeat: no-repeat;
+}
+.primary-row .nav-tile.store{
+  background-image:url("../../images/portfolio_imgs/portfolio_images/hitoshi_power.png");
+  background-size: cover;
+  background-position: center 15%;
+  background-repeat: no-repeat;
+}
+/* --- Secondary row tiles (medium) --- */
+.secondary-row .nav-tile {
+  flex: 1 1 0;
+  height: 160px;
+}
+.secondary-row .nav-tile.contact{
+  background-image:url("../../images/portfolio_imgs/portfolio_images/self_portrait.PNG");
+  background-color:#7ebd52;
+  background-size: 60%;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+}
+.secondary-row .nav-tile.about{
+  background-image:url("../../images/portfolio_imgs/portfolio_images/transform.png");
+  background-color: #ffffff;
+  background-size:70%;
+  background-position: center 20%;
+  background-repeat: no-repeat; 
+}
+
+/* If you want portfolio slightly more prominent than store, you can add modifier:
+   .primary-row .nav-tile.portfolio { flex: 1.2; }   */
+/*.primary-row .nav-tile.portfolio {
+  Example: slight priority; comment out to keep strictly equal
+  flex: 1.12 1 0;
+}
+*/
+
+/* --- Social row (small) --- */
+/* support both the class and the current id used in markup */
+.social-row,
+#social-row {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem; /* tightened spacing */
+  align-items: stretch;
+  justify-items: stretch;
+  margin-top: 0.5rem;
+  grid-auto-rows: var(--social-row-height);
+}
+.social-row .nav-tile,
+#social-row .nav-tile {
+  height: 100%;
+  width: 100%;
+  max-width: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: calc(var(--radius) / 2);
+  font-size: 0.95rem;
+  background-color: transparent;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.social-row .nav-tile::before,
+#social-row .nav-tile::before { background: transparent; }
+.social-row .nav-tile img,
+#social-row .nav-tile img { height: 28px; width: auto; display: inline-block; vertical-align: middle; margin-right: .5rem; }
+
+/* ---------- Responsive behavior ---------- */
+/* Narrow screens: stack vertically for calm, easy focus */
+@media (max-width: 900px) {
+
+  #hero { padding: 2.5rem 0; }
+
+  .primary-row,
+  .secondary-row {
+    flex-direction: column;
+  }
+
+  .primary-row .nav-tile,
+  .secondary-row .nav-tile {
+    width: 100%;
+  }
+
+  /* reduce heights on small screens */
+  .primary-row .nav-tile { height: 200px; }
+  .secondary-row .nav-tile { height: 140px; }
+  .social-row .nav-tile { height: 56px; }
+
+  .hero-media { height: clamp(220px, 40vh, 380px); }
+}
+
+/* responsive adjustments for social grid */
+@media (max-width: 900px) {
+  .social-row,
+  #social-row {
+    grid-template-columns: repeat(3, 1fr);
+    gap: calc(var(--gap-md) / 1.5);
+  }
+}
+
+@media (max-width: 480px) {
+  .social-row,
+  #social-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: calc(var(--gap-md) / 2);
+  }
+}
+
+/* Extra small screens: compact */
+@media (max-width: 480px) {
+  .hero-caption h1 { font-size: 1.25rem; }
+  .hero-caption p { font-size: 0.92rem; }
+  .primary-row .nav-tile { height: 180px; }
+  .secondary-row .nav-tile { height: 120px; }
+  #hub-navigation { padding: 2rem 0; gap: 1rem; }
+}
+
+/* ---------- Accessibility & motion preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .nav-tile,
+  .hero-cta {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* focus-visible styles for keyboard users */
+.nav-tile:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent) 20%, white);
+  outline-offset: 4px;
+}
+
+/* simple utility for setting image backgrounds from HTML (if using inline styles) */
+.bg-cover {
+  background-size: cover !important;
+  background-position: center center !important;
+}
+
+/* small helper for dark label on light backgrounds (if any) */
+.label--dark {
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* ---------- End of home.css ---------- */

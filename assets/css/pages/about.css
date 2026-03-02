@@ -1,0 +1,108 @@
+.about-container {
+    min-height: 100vh;
+    background-image:linear-gradient(
+            to right,
+            #1f5f3a 0%,        /* solid green */
+            #1f5f3a 10%,       /* start fading quicker */
+            rgba(31,95,58,0.8) 17%,
+            rgba(31,95,58,0.4) 25%
+            /*rgba(31,95,58,0) 70%*/
+        ), url('../../images/portfolio_imgs/green_smoke.png');
+    filter: brightness(1.25) contrast(1.1) saturate(1.15);
+    background-size: auto,90%;
+    background-position: right center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.about-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /*background: linear-gradient(90deg, var(--bg-dark) 0%, var(--bg-dark) 40%, rgba(50, 150, 100, 0.3) 70%, transparent 100%);*/
+    pointer-events: none;
+}
+
+.about-hero {
+    position: relative;
+    z-index: 1;
+    padding: 3rem 2rem;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.about-content h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.about-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.btn-back {
+    display: inline-block;
+    border: 2px solid var(--accent-color);
+    padding: 0.75rem 1.5rem;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: fit-content;
+    margin-top: 1rem;
+}
+
+.btn-back:hover {
+    background-color: var(--accent-color);
+    color: var(--bg-dark);
+}
+
+.social-icons {
+    margin-top: -1.5rem;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    font-weight:bold;
+    color: var(--accent-color);
+    filter: invert(1) sepia(100%) hue-rotate(180deg) saturate(2);
+    transition: all 0.3s ease;
+}
+.social-icons a:hover{
+    background-color: var(--accent-color);
+    color:var(--bg-dark);
+    font-weight:normal;
+    text-decoration: underline;
+    filter:none;
+}
+
+@media (max-width: 768px) {
+    .about-content h2 {
+        font-size: 1.8rem;
+    }
+    
+    .about-hero {
+        min-height: auto;
+        padding: 2rem 1rem;
+        margin-left: 0;
+    }
+}
